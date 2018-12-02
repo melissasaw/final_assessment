@@ -25,16 +25,23 @@
   </head>
 
   <body>
+
+    <!-- Sign up or Sign out button -->
+    <div class="container-fluid">
+      <!-- If user is logged in show sign out button -->
+      <%if logged_in?%>
+      <%=button_to "Sign Out",sign_out_path%>
+      <!-- else show sign up or sign in  -->
+      <%else%>
+      <%=link_to "Sign Up", new_user_path%>
+      <%end%>
+    </div>
+
     <!-- This is for flashing status if you ever need it :) -->
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
 
-    <!-- Sign up or Sign out button -->
-    <div class="container-fluid">
-      <%=link_to "Sign Up", new_user_path%>
-      <%=link_to "Sign Out"%>
-    </div>
     <%= yield %>
   </body>
 </html>

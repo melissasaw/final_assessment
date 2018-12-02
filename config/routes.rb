@@ -4,4 +4,7 @@ Rails.application.routes.draw do
 
   resources :users
   root "welcome#index"
+
+  post '/sign_in' => "users#sign_in"
+  post '/sign_out' => "users#sign_out"
 end

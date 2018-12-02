@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+skip_before_action :verify_authenticity_token, :only => [:sign_in]
 
 	def index
 		users = User.all
@@ -19,6 +20,32 @@ class UsersController < ApplicationController
 	end
 
 	def sign_in
+		# If email is found, compare password
+		if User.find_by(email:sign_in_params[:email])
+			user = User.find_by(email:sign_in_params[:email])
+			# if password matches, set up session, redirect to user/index page
+			if user.authenticate(sign_in_params[:password])
+				session[:user_id]=user.id
+				redirect_to root_path
+				flash[:success] = "Welcome Back #{current_user.first_name}:)"
+			else 
+			# If password doesnt match, redirect to rootpath
+			redirect_to root_path
+			flash[:notice] = "Invalid email/password"
+			end
+
+		else
+			redirect_to root_path
+			flash[:notice] = "Invalid email/password"
+		end
+		
+
+	end
+
+	def sign_out
+		
+		session[:user_id]=nil
+		redirect_to root_path
 	end
 
 	def show
@@ -36,8 +63,12 @@ class UsersController < ApplicationController
 private
 
 def get_params
+	params.require(:user).permit(:first_name,:last_name,:email,:password,:birthday,:gender)
+end
 
-params.require(:user).permit(:first_name,:last_name,:email,:password,:birthday,:gender)
+def sign_in_params
+	params.permit(:email, :password)
+
 end
 
 end
