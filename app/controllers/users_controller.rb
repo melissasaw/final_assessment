@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 skip_before_action :verify_authenticity_token, :only => [:sign_in]
 
 	def index
-		users = User.all
+		@users = User.all
 	end
 
 	def new
@@ -26,17 +26,15 @@ skip_before_action :verify_authenticity_token, :only => [:sign_in]
 			# if password matches, set up session, redirect to user/index page
 			if user.authenticate(sign_in_params[:password])
 				session[:user_id]=user.id
-				redirect_to root_path
-				flash[:success] = "Welcome Back #{current_user.first_name}:)"
+				redirect_to users_path
 			else 
 			# If password doesnt match, redirect to rootpath
 			redirect_to root_path
-			flash[:notice] = "Invalid email/password"
+			flash[:info] = "Invalid email/password"
 			end
-
 		else
 			redirect_to root_path
-			flash[:notice] = "Invalid email/password"
+			flash[:info] = "Invalid email/password"
 		end
 		
 
