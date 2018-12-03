@@ -13,7 +13,6 @@ class PokemonsController < ApplicationController
 
 		if pokemon.save
 			redirect_to pokemon_path(pokemon)
-
 			# deduct money from user
 		else
 			redirect_to root_path

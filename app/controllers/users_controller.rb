@@ -26,7 +26,7 @@ skip_before_action :verify_authenticity_token, :only => [:sign_in]
 			# if password matches, set up session, redirect to user/index page
 			if user.authenticate(sign_in_params[:password])
 				session[:user_id]=user.id
-				redirect_to users_path
+				redirect_to root_path
 			else 
 			# If password doesnt match, redirect to rootpath
 			redirect_to root_path
