@@ -5,10 +5,12 @@ class PokemonsController < ApplicationController
 	end
 
 	def create
+
 		# Receives a json object
 		# Convert json object back into an array
 		pokemon_array = JSON.parse(params[:jsonData])
 		# create new pokemon for user
+		byebug
 		pokemon = current_user.pokemons.new(pokemon_array[0])
 
 		if pokemon.save
