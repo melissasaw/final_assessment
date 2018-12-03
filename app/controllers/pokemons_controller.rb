@@ -1,7 +1,8 @@
 class PokemonsController < ApplicationController
 
-	def new
-
+	def index
+		# Only show current_users pokemon. This is the pokédex
+		@pokemon = current_user.pokemons
 	end
 
 	def create
@@ -25,7 +26,7 @@ class PokemonsController < ApplicationController
 	end
 
 	def show
-		byebug
+		
 		@pokemon = Pokemon.find_by(id:params[:id])
 	end
 
