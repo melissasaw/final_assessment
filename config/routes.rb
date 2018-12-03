@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   post '/sign_in' => "users#sign_in"
   post '/sign_out' => "users#sign_out"
+  post '/pokedex' => "users#pokedex"
 end

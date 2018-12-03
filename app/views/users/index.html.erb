@@ -6,6 +6,31 @@
 
 	<div>
 		<h4>What pokemon are you today?</h4>
+		<%=button_to "Pokedex Test", pokedex_path%>
+
+
+		<!-- app search page-->
+		<div data-role="page" id="pokeSearch-page">
+		    <div data-role="header" data-theme="b">
+		         <h1>Pokeapi Demos</h1>
+		    </div>
+		    <div data-role="main" class="ui-content">
+			    <form id="pokeForm" action="#pokeDetails-page" method="post">
+			        <div>
+				        <label for="pokeInput">Pokemon name or number:
+				        <input type="text" name="pokeInput" id="pokeInput" placeholder="Name/Number" value="">
+			        </div>
+			        <br/>
+			        <div>
+			        	 <button type="button" onclick="pokeSubmit()" class="btn btn-primary">Search</button><br/>
+			        </div>
+			    </form>
+		    <div>
+		    <ul data-role="listview" data-inset="true" id="pokeDetails">
+		    </ul>
+		    </div>
+		    </div>
+		</div>
 	</div>
 
 	<!-- Every 24 hours you get to spawn a pokemon and add it to your deck -->
@@ -17,9 +42,34 @@
 	<!-- When your pokemon grows to a reasonable size you can mate it-->
 	<!-- Searches for other same species and opposite gender pokemon to mate -->
 	<!-- If you pay more money you get to mate your pokemon with another pokemon of the same sex -->
-	
-
-
 </div>
+
+<script type="text/javascript">
+
+	function pokeSubmit(){
+    var param = document.getElementById("pokeInput").value;
+    var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + param+"/";
+    console.log(pokeURL)
+
+    // jQuery method to make a http get request, sends the http url and function.
+    $.getJSON(pokeURL, function(data){
+    	// Pokeapi responds with JSON data
+        // console.log(data);
+        // Converts JSON into formatted string
+        console.log(JSON.stringify(data, null, "  "));
+        // different formats of getting the data out
+        console.log(data.name)
+        console.log(data.height + "m")
+       	console.log(data.weight + "kg")
+       	console.log(data.forms[0].name)
+       	console.log(data.moves[0].move.name)
+       	console.log(data.moves.length)
+        console.log(data.held_items[0].version_details[0].rarity)
+        
+        
+    });
+}
+            
+</script>
 
 

@@ -58,6 +58,11 @@ skip_before_action :verify_authenticity_token, :only => [:sign_in]
 	def destroy
 	end
 
+	def pokedex
+		byebug
+	end
+
+
 private
 
 def get_params
