@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :users
+  resources :pokemons
   root "welcome#index"
 
   post '/sign_in' => "users#sign_in"
