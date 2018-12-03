@@ -1,0 +1,21 @@
+
+<div class= "container">
+	<h1>Sign up</h1>
+</div>
+
+<div class= "container">
+	
+    <%= form_for @user, html: {multiport:true} do |form| %>
+      <%= render partial: '/users/form', object: form %>
+
+      <div class="submit-field">
+        <%= form.submit %>
+      </div>
+
+<!--       <div class="other-links">
+        <%#= link_to t(".sign_in"), sign_in_path %>
+      </div> -->
+    <% end %>
+
+</div>
+

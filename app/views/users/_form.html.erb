@@ -1,0 +1,43 @@
+
+<div class= "container">
+
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <%= form.text_field :first_name, class: 'form-control', placeholder: 'Enter First Name' %>
+  </div>
+
+  <div class="form-group">
+    <label for="last_name" >Last Name</label>
+    <%= form.text_field :last_name, class: 'form-control', placeholder: 'Enter Last Name' %>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Date of Birthday</label>
+    <%= form.text_field :birthday, class: 'form-control', placeholder: 'D.O.B' %>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= form.text_field :email, class: 'form-control', placeholder: 'Email' %>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <%= form.text_field :password, class: 'form-control', placeholder: 'Enter Password' %>
+  </div>
+
+  <div class ="form-group">
+    <label for="customer">Gender</label>
+    <div class="form-check">
+    <%= form.radio_button :gender, '1' %>Male<br/>
+    <%= form.radio_button :gender, '0' %>Female<br/>
+    </div>
+  </div>
+
+<!--   <div class="form-group top-margin">
+    <label for="picture">Profile Picture</label>
+    <%#= form.file_field :avatar, class: 'form-control', placeholder: 'Upload Profile Picture' %>
+  </div> -->
+
+
+</div>
