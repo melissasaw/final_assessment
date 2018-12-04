@@ -7,7 +7,8 @@
 	
 	</div>
 	<div class="container">
-		Name: <%=@pokemon.name.capitalize%><br/>
+		Name: <%=@pokemon.name.capitalize%>     <%=link_to "Name Change",edit_pokemon_path(@pokemon)%><br/>
+		Species : <%=@pokemon.species.capitalize%><br/>
 		National id: <%=@pokemon.national_id%><br/>
 		Height: <%=@pokemon.height%> m <br/>
 		Weight : <%=@pokemon.weight%> kg<br/>
