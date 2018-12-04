@@ -1,8 +1,14 @@
 <div class="container">
 
-	<h2>Your <%=@pokemon.name%> has been waiting for you.</h2>
-
+	<div>
+		<h2>Your <%=@pokemon.name.capitalize%> has been waiting for you.</h2>
+	</div>
+	<div>
+	
+	</div>
 	<div class="container">
+		Name: <%=@pokemon.name.capitalize%>     <%=link_to "Name Change",edit_pokemon_path(@pokemon)%><br/>
+		Species : <%=@pokemon.species.capitalize%><br/>
 		National id: <%=@pokemon.national_id%><br/>
 		Height: <%=@pokemon.height%> m <br/>
 		Weight : <%=@pokemon.weight%> kg<br/>

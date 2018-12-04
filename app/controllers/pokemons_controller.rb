@@ -1,4 +1,5 @@
 class PokemonsController < ApplicationController
+before_action :find_pokemon, only: [:show,:edit,:update]
 
 	def index
 		# Only show current_users pokemon. This is the pokédex
@@ -22,12 +23,33 @@ class PokemonsController < ApplicationController
 			flash[:info] = "Generator Failed. Please try again"
 			# do not deduct coins from user
 		end
+	end
 
+	def edit
+	end
+
+	def update
+		byebug
+		if @pokemon.update(get_params)
+			redirect_to pokemon_path(@pokemon)
+		else 
+			render 'edit'
+		end
 	end
 
 	def show
 		
 		@pokemon = Pokemon.find_by(id:params[:id])
 	end
+
+private
+
+def find_pokemon
+	@pokemon = Pokemon.find_by(id:params[:id])
+end
+
+def get_params
+	params.require(:pokemon).permit(:name)
+end
 
 end

@@ -1,0 +1,16 @@
+<div class ="container">
+	<div>
+		<h3>Rename your favourite Pokémon</h3>
+	</div>
+	<div>
+		<h5>What would you like to rename <%=@pokemon.name.capitalize%>?</h5>
+		<%=image_tag("#{@pokemon.image_url}", height: '150em')%>
+		<p>My new name is:</p>
+		<%=form_with scope: @pokemon, url: pokemon_path, method: "put" do |f|%>
+			<%=f.text_field :name%><br/>
+			<%=f.submit%>
+		<%end%>
+
+	</div>
+
+</div>
