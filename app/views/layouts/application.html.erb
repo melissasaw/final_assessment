@@ -32,6 +32,10 @@
   <a class="navbar-brand" href="/">
     <img src="/Pokaymoon.png" height="55" class="d-inline-block align-top" alt=""> </a>  
 
+  <%if logged_in?%>
+    <a class ="align-center"><%=image_tag("/pokecoin.png",height:"35em")%> <strong><%=current_user.coins%></strong></a>
+  <%end%> 
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 skip_before_action :verify_authenticity_token, :only => [:sign_in]
+before_action :find_user, only: [:show,:edit,:update,:destroy]
 
 	def index
 		@users = User.all
@@ -60,10 +61,6 @@ skip_before_action :verify_authenticity_token, :only => [:sign_in]
 	def destroy
 	end
 
-	def pokedex
-		byebug
-	end
-
 
 private
 
@@ -73,7 +70,10 @@ end
 
 def sign_in_params
 	params.permit(:email, :password)
+end
 
+def find_user
+	@user = User.find_by(id:params[:id])
 end
 
 end
