@@ -37,7 +37,35 @@
 			</div>
 		<%end%>
 
-
 	</div>
 
+	<%if current_user != @pokemon.user%>
+	<div class="top-margin">
+		<button type="button" onclick="coinGenerator()" class="btn btn-orange">Play with <%=@pokemon.name.capitalize%></button><br/>
+		<p class= "top-margin darkgrey-font">Spend time with other Pokémons and earn some pokécoins! :)</p>
+	</div>
+	<%end%>
+
 </div>
+
+<script type="text/javascript">
+	
+	function coinGenerator(){
+
+		// Making sure it doesnt hit 0
+		var min = 0
+		var max = 40
+		var coins = [Math.floor(Math.random() *(+max - +min))+ +min] 
+		console.log(coins)
+
+		var coin_json =JSON.stringify(coins);
+
+		$.post("/coins", { jsonData: coin_json },
+		function(data, textStatus) {
+		if (textStatus != "success") {
+		result = "false";
+		}
+		});
+
+	}
+</script>
