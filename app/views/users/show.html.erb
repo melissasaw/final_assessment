@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container top-margin">
 	<div>
 		<h2>Your Profile</h2>
 	</div>
 
-	<div>
+	<div class= "container thin-border-box top-margin">
 		<table style= "width:100%">
 			<tr>
 				<td>Full Name:</td>
@@ -24,11 +24,11 @@
 				<%end%>
 				<td><%=gender%></td>
 			</tr>
+			<tr>
+				<td>Pokécoins:</td>
+				<td><%=image_tag("/pokecoin.png",height:"35em")%> <%=@user.coins%></td>
+			</tr>
 		</table>
-	</div>
-
-	<div>
-		<p><%=image_tag("/pokecoin.png",height:"35em")%> <%=@user.coins%></p>
 	</div>
 
 </div>

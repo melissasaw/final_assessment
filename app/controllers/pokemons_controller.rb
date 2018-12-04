@@ -7,7 +7,6 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 	end
 
 	def create
-
 		# Receives a json object
 		# Convert json object back into an array
 		pokemon_array = JSON.parse(params[:jsonData])
@@ -49,6 +48,8 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		end
 
 	end
+
+
 
 private
 

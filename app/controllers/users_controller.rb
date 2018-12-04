@@ -61,6 +61,22 @@ before_action :find_user, only: [:show,:edit,:update,:destroy]
 	def destroy
 	end
 
+	def coin_generator
+		
+		# Convert json object back into an array
+		coins = JSON.parse(params[:jsonData])[0]
+		current_user.coins = current_user.coins + coins
+		
+		if current_user.save
+			redirect_to root_path
+			flash[:success] = "Hooray! " + coins.to_s + " pokécoins added to your wallet  >_< "
+		else
+			redirect_to root_path
+			flash[:info] = "Coin generator broken! Please try again tmw :( "
+		end
+
+	end
+
 
 private
 
