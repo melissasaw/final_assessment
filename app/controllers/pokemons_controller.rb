@@ -6,7 +6,7 @@ class PokemonsController < ApplicationController
 	end
 
 	def create
-
+		
 		# Receives a json object
 		# Convert json object back into an array
 		pokemon_array = JSON.parse(params[:jsonData])

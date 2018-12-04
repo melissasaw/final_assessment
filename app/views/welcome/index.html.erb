@@ -95,7 +95,7 @@
         // console.log(data.sprites.front_default)
 
         // Get only what i need and store it
-        var pokemon = [{ name: data.name, national_id: data.id, height: data.height, weight: data.weight, moves: data.moves[random].move.name,image_url:data.sprites.front_default, image_url_1: data.sprites.back_default}];
+        var pokemon = [{ name: data.name, species:data.name, national_id: data.id, height: data.height, weight: data.weight, moves: data.moves[random].move.name,image_url:data.sprites.front_default, image_url_1: data.sprites.back_default}];
 
         console.log(pokemon)
 
