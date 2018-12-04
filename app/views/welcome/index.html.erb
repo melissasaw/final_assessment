@@ -39,12 +39,12 @@
 						<!-- Randomly generates a number and gives you a pokemon -->
 					    <div>
 					       	 <h4>Buy a Pokemon today!</h4>
-					         <h6>15 coins/pokemon</h6>
+					         
 					    </div>
 					    <div data-role="main" class="ui-content">
 						    <form id="pokeForm" action="#pokeDetails-page" method="post">
 						        <div>
-						        	 <button type="button" onclick="pokeSubmit()" class="btn btn-primary">Generate</button><br/>
+						        	 <button type="button" onclick="pokeSubmit()" class="btn btn-primary">Generate</button> <%=image_tag("/pokecoin.png",height:"35em")%> <strong>15</strong><br/>
 						        </div>
 						    </form>
 					    </div>
@@ -53,11 +53,20 @@
 				<div class = "container thin-border-box top-margin">
 		    		<div>
 				       	<h4>Coin Generator!</h4>
-				        <h6>Click here to generate coins every 24 hours :)</h6>
+				        <!-- <h6>Click here to generate coins every 24 hours :)</h6> -->
 		        		<button type="button" onclick="coinGenerator()" class="btn btn-primary">Good Luck!</button><br/>
 				    </div>
-				
+				</div>
 
+				<div class = "container thin-border-box top-margin">
+					<div>
+						<h4>Other pokémons in the system!</h4>
+					</div>
+					<div>
+						<%@pokemons.each do |p|%>
+						<a href="/pokemons/<%=p.id%>"><%=image_tag("#{p.image_url}", height: '150em')%></a>
+						<%end%>
+					</div>
 				</div>
 			</div>
 		<%end%>
