@@ -63,10 +63,11 @@
 						<h4>Other pokémons in the system!</h4>
 					</div>
 					<!-- Implement Find pokemon by species search bar here -->
-						<%= form_tag find_pokemon_path do %>
-						    <td><%= label_tag "Search for Pokemons:" %></td>
-						    <td><%= text_field_tag "query", nil, list: "list" %></td>
+						<%=form_tag("/search_pokemon", method: "get") do %>
+						    <%= label_tag "Search for Pokemons:" %>
+						    <%= text_field_tag "query", nil, list: "list" %>
 						      <datalist id="list"></datalist>
+						    <%= submit_tag("Search") %>
 						<% end %>
 					<div>
 						

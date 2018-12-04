@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 	post '/pokedex' => "users#pokedex"
 	post '/find_pokemon' => "pokemons#find_pokemon"
 	get '/pokemon_search_autocomplete' => "pokemons#pokemon_search_autocomplete"
+	get '/search_pokemon' => "pokemons#search_pokemon"
  
 end
