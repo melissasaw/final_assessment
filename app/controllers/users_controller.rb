@@ -11,6 +11,9 @@ skip_before_action :verify_authenticity_token, :only => [:sign_in]
 
 	def create
 		user= User.new(get_params)
+		# Every user starts with 200 coins
+		user.coins = 200
+		# 
 		if user.save
 			redirect_to root_path
 			flash[:success] = "Woohoo! User successfully created! Sign In below."
@@ -41,7 +44,6 @@ skip_before_action :verify_authenticity_token, :only => [:sign_in]
 	end
 
 	def sign_out
-		
 		session[:user_id]=nil
 		redirect_to root_path
 	end
