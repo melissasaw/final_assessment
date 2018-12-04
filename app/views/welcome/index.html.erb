@@ -3,14 +3,11 @@
 	<div class="container">
 		<!-- If users is not logged in, offer log in form -->
 		<%if logged_in? == false%>
-			<div class= "container">
-				<h1>Welcome to the PokePage :)</h1>
-				<h2>This is melissa's final assessment</h2>
-			</div>
 
 			<div class="login-form">
-				<div class="main-div">
+				<div class="main-div margin-100">
 				    <div class="panel">
+				    	<div class="margin-bottom-30"><%=image_tag("/Pokaymoon_1.png", height:"100")%></div>
 					   <h2>Sign In</h2>
 						   </div>
 						    <form id="Login" action="/sign_in" method="post" >

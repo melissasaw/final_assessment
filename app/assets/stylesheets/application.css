@@ -36,3 +36,9 @@
     background-color: #FF8C00;
     border-color: #FF8C00;
 }
+
+.full-height
+{
+	min-height:40em;
+	height:100%;
+}
