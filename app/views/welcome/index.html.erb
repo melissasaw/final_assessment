@@ -32,27 +32,44 @@
 
 			<div class="container">
 				<div>
-					<h1>Welcome Back <%=current_user.first_name%></h1>
+					<h1 class="top-margin">Welcome Back <%=current_user.first_name%></h1>
 				</div>
 
-				<div>
-					<!-- Randomly generates a number and gives you a pokemon -->
-					<div data-role="page" id="pokeSearch-page">
-					    <div data-role="header" data-theme="b">
-					         <h4>Buy a Pokemon today!</h4>
-					         <h6>15 coins/pokemon</h6>
+				<div class = "container thin-border-box">
+						<!-- Randomly generates a number and gives you a pokemon -->
+					    <div>
+					       	 <h4>Buy a Pokemon today!</h4>
+					         
 					    </div>
 					    <div data-role="main" class="ui-content">
 						    <form id="pokeForm" action="#pokeDetails-page" method="post">
 						        <div>
-						        	 <button type="button" onclick="pokeSubmit()" class="btn btn-primary">Good Luck :) </button><br/>
+						        	 <button type="button" onclick="pokeSubmit()" class="btn btn-primary">Generate</button> <%=image_tag("/pokecoin.png",height:"35em")%> <strong>15</strong><br/>
 						        </div>
 						    </form>
-					    <div>
-					    <ul data-role="listview" data-inset="true" id="pokeDetails">
-					    </ul>
 					    </div>
-					    </div>
+				</div>
+
+				<div class = "container thin-border-box top-margin">
+		    		<div>
+				       	<h4>Coin Generator!</h4>
+				        <!-- <h6>Click here to generate coins every 24 hours :)</h6> -->
+		        		<button type="button" onclick="coinGenerator()" class="btn btn-primary">Good Luck!</button><br/>
+				    </div>
+				</div>
+
+				<div class = "container thin-border-box top-margin">
+					<div>
+						<h4>Other pokémons in the system!</h4>
+					</div>
+					<!-- Implement search bar here -->
+					<div>
+						
+					</div>
+					<div>
+						<%@pokemons.each do |p|%>
+						<a href="/pokemons/<%=p.id%>"><%=image_tag("#{p.image_url}", height: '150em')%></a>
+						<%end%>
 					</div>
 				</div>
 			</div>
@@ -65,53 +82,71 @@
 
 	function pokeSubmit(){
 
-	// Making sure it doesnt hit 0
-	var min = 1
-	var max = 100
-	var param = Math.floor(Math.random() *(+max - +min))+ +min; 
-    // var param = document.getElementById("pokeInput").value;
-    var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + param+"/";
-    console.log(param)
-    console.log(pokeURL)
+		// Making sure it doesnt hit 0
+		var min = 1
+		var max = 100
+		var param = Math.floor(Math.random() *(+max - +min))+ +min; 
+	    // var param = document.getElementById("pokeInput").value;
+	    var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + param+"/";
+	    console.log(param)
+	    console.log(pokeURL)
 
-    // jQuery method to make a http get request, sends the http url and function.
-    $.getJSON(pokeURL, function(data){
-    	// Pokeapi responds with JSON data
-        console.log(data);
-        // Converts JSON into formatted string
-        // console.log(JSON.stringify(data, null, "  "));
+	    // jQuery method to make a http get request, sends the http url and function.
+	    $.getJSON(pokeURL, function(data){
+	    	// Pokeapi responds with JSON data
+	        console.log(data);
+	        // Converts JSON into formatted string
+	        // console.log(JSON.stringify(data, null, "  "));
 
-        // different formats of getting the data out
-        // console.log(data.name)
-        // console.log(data.id)
-        // console.log(data.height + "m")
-       	// console.log(data.weight + "kg")
-       	// console.log(data.moves[0].move.name)
-       	var random = Math.floor(Math.random() * data.moves.length)
-       	// console.log("random number =" + random)
-       	// console.log(data.moves[random].move.name)
-        // console.log(data.held_items[0].version_details[0].rarity)
-        // Gets the image
-        // console.log(data.sprites.front_default)
+	        // different formats of getting the data out
+	        // console.log(data.name)
+	        // console.log(data.id)
+	        // console.log(data.height + "m")
+	       	// console.log(data.weight + "kg")
+	       	// console.log(data.moves[0].move.name)
+	       	var random = Math.floor(Math.random() * data.moves.length)
+	       	// console.log("random number =" + random)
+	       	// console.log(data.moves[random].move.name)
+	        // console.log(data.held_items[0].version_details[0].rarity)
+	        // Gets the image
+	        // console.log(data.sprites.front_default)
 
-        // Get only what i need and store it
-        var pokemon = [{ name: data.name, species:data.name, national_id: data.id, height: data.height, weight: data.weight, moves: data.moves[random].move.name,image_url:data.sprites.front_default, image_url_1: data.sprites.back_default}];
+	        // Get only what i need and store it
+	        var pokemon = [{ name: data.name, species:data.name, national_id: data.id, height: data.height, weight: data.weight, moves: data.moves[random].move.name,image_url:data.sprites.front_default, image_url_1: data.sprites.back_default}];
 
-        console.log(pokemon)
+	        console.log(pokemon)
 
-        // Convert info into a json
-        var pokemon_json =JSON.stringify(pokemon);
+	        // Convert info into a json
+	        var pokemon_json =JSON.stringify(pokemon);
 
-		 // Passing json response to rails controller
-        $.post("/pokemons", { jsonData: pokemon_json },
+			 // Passing json response to rails controller
+	        $.post("/pokemons", { jsonData: pokemon_json },
+			function(data, textStatus) {
+			if (textStatus != "success") {
+			result = "false";
+			}
+			});
+	    });
+	}
+
+	function coinGenerator(){
+
+		// Making sure it doesnt hit 0
+		var min = 0
+		var max = 100
+		var coins = [Math.floor(Math.random() *(+max - +min))+ +min] 
+		console.log(coins)
+
+		var coin_json =JSON.stringify(coins);
+
+		$.post("/coins", { jsonData: coin_json },
 		function(data, textStatus) {
 		if (textStatus != "success") {
 		result = "false";
 		}
 		});
 
-    });
-}
+	}
 </script>
 
 

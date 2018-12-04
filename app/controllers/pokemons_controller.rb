@@ -7,7 +7,6 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 	end
 
 	def create
-
 		# Receives a json object
 		# Convert json object back into an array
 		pokemon_array = JSON.parse(params[:jsonData])
@@ -16,7 +15,8 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 
 		if pokemon.save
 			redirect_to pokemon_path(pokemon)
-			# deduct money from user
+			current_user.coins = current_user.coins - 15
+			current_user.save
 		else
 			redirect_to root_path
 			flash[:info] = "Generator Failed. Please try again"
@@ -48,6 +48,8 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		end
 
 	end
+
+
 
 private
 

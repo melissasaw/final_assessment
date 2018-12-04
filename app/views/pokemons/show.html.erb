@@ -1,13 +1,24 @@
 <div class="container">
 
-	<div>
-		<h2>Your <%=@pokemon.name.capitalize%> has been waiting for you.</h2>
+	<div class ="top-margin">
+		<%if current_user == @pokemon.user%>
+			<div>
+				<h4>Your <%=@pokemon.name.capitalize%> has been waiting for you.</h4>
+			</div>
+		<%else%>
+			<div>
+				<h4>How do you like <%=@pokemon.user.first_name%> <%=@pokemon.user.last_name%>'s <%=@pokemon.species.capitalize%>?</h4>
+				<h5>Show <%=@pokemon.name.capitalize%> some love :) </h5>
+			</div>
+		<%end%>	
 	</div>
-	<div>
-	
-	</div>
-	<div class="container">
-		Name: <%=@pokemon.name.capitalize%>     <%=link_to "Name Change",edit_pokemon_path(@pokemon)%><br/>
+
+	<div class="container thin-border-box top-margin">
+		Name: <%=@pokemon.name.capitalize%>
+		<%if current_user == @pokemon.user%>
+			<%=link_to "Name Change",edit_pokemon_path(@pokemon)%>
+		<%end%>
+		<br/>
 		Species : <%=@pokemon.species.capitalize%><br/>
 		National id: <%=@pokemon.national_id%><br/>
 		Height: <%=@pokemon.height%> m <br/>
@@ -18,15 +29,43 @@
 		<%=image_tag("#{@pokemon.image_url}", height: '150em')%>
 		<%=image_tag("#{@pokemon.image_url_1}", height: '150em')%>
 
-		<%=button_to "Groom"%>
-		<%=button_to "Mate"%>
-
-		<div>
-			<%=button_to "Delete",pokemon_path(@pokemon), method: :delete, data: {confirm: "Are you sure you want to delete pokemon?"} %>
-
-		</div>
-
+		<%if current_user == @pokemon.user%>
+			<%=button_to "Groom"%>
+			<%=button_to "Mate"%>
+			<div>
+				<%=button_to "Delete",pokemon_path(@pokemon), method: :delete, data: {confirm: "Are you sure you want to delete pokemon?"} %>
+			</div>
+		<%end%>
 
 	</div>
 
+	<%if current_user != @pokemon.user%>
+	<div class="top-margin">
+		<button type="button" onclick="coinGenerator()" class="btn btn-orange">Play with <%=@pokemon.name.capitalize%></button><br/>
+		<p class= "top-margin darkgrey-font">Spend time with other Pokémons and earn some pokécoins! :)</p>
+	</div>
+	<%end%>
+
 </div>
+
+<script type="text/javascript">
+	
+	function coinGenerator(){
+
+		// Making sure it doesnt hit 0
+		var min = 0
+		var max = 40
+		var coins = [Math.floor(Math.random() *(+max - +min))+ +min] 
+		console.log(coins)
+
+		var coin_json =JSON.stringify(coins);
+
+		$.post("/coins", { jsonData: coin_json },
+		function(data, textStatus) {
+		if (textStatus != "success") {
+		result = "false";
+		}
+		});
+
+	}
+</script>
