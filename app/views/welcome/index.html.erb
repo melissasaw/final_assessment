@@ -65,7 +65,10 @@
 
 	function pokeSubmit(){
 
-	var param = Math.floor(Math.random() * 100)
+	// Making sure it doesnt hit 0
+	var min = 1
+	var max = 100
+	var param = Math.floor(Math.random() *(+max - +min))+ +min; 
     // var param = document.getElementById("pokeInput").value;
     var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + param+"/";
     console.log(param)
@@ -88,10 +91,11 @@
        	// console.log("random number =" + random)
        	// console.log(data.moves[random].move.name)
         // console.log(data.held_items[0].version_details[0].rarity)
+        // Gets the image
+        // console.log(data.sprites.front_default)
 
         // Get only what i need and store it
-        var pokemon = [{ name: data.name, national_id: data.id, height: data.height, weight: data.weight,
-        rarity: data.held_items[0].version_details[0].rarity, moves: data.moves[random].move.name}];
+        var pokemon = [{ name: data.name, national_id: data.id, height: data.height, weight: data.weight, moves: data.moves[random].move.name,image_url:data.sprites.front_default, image_url_1: data.sprites.back_default}];
 
         console.log(pokemon)
 

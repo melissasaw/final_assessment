@@ -1,14 +1,17 @@
 class PokemonsController < ApplicationController
 
-	def new
-
+	def index
+		# Only show current_users pokemon. This is the pokédex
+		@pokemon = current_user.pokemons
 	end
 
 	def create
+
 		# Receives a json object
 		# Convert json object back into an array
 		pokemon_array = JSON.parse(params[:jsonData])
 		# create new pokemon for user
+		byebug
 		pokemon = current_user.pokemons.new(pokemon_array[0])
 
 		if pokemon.save
@@ -23,7 +26,7 @@ class PokemonsController < ApplicationController
 	end
 
 	def show
-		byebug
+		
 		@pokemon = Pokemon.find_by(id:params[:id])
 	end
 
