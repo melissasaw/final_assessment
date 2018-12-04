@@ -62,7 +62,12 @@
 					<div>
 						<h4>Other pokémons in the system!</h4>
 					</div>
-					<!-- Implement search bar here -->
+					<!-- Implement Find pokemon by species search bar here -->
+						<%= form_tag find_pokemon_path do %>
+						    <td><%= label_tag "Search for Pokemons:" %></td>
+						    <td><%= text_field_tag "query", nil, list: "list" %></td>
+						      <datalist id="list"></datalist>
+						<% end %>
 					<div>
 						
 					</div>
@@ -145,8 +150,53 @@
 		result = "false";
 		}
 		});
-
 	}
+
+
+	// get element
+	var query = document.getElementById("query")
+
+	// catches the key up
+	if (query){
+	  query.addEventListener("keyup", function(event){
+	    autocomplete(event)
+	  })
+	}
+
+	window.globalXHR = new XMLHttpRequest()
+
+	function autocomplete(event) {
+	  //retrieve input
+	  var input = event.target
+
+	  //get datalist element for results
+	  var list = document.getElementById("list")
+	  	var xhttp = new XMLHttpRequest();
+	    xhttp.onreadystatechange = function() {
+	      if (this.readyState == 4 && this.status == 200) {
+	        
+	        //convert json response to an object
+	        var response = JSON.parse(this.responseText)
+
+	        //clear previous results
+	        list.innerHTML = ""
+
+	        response.forEach(function(element){
+	          //create new option element
+	          var option = document.createElement("option")
+	          option.value = element
+
+	          //append option to list
+	          list.appendChild(option)
+	        })
+	      }
+	    }
+	    // This sends a get request to user controller with the input params
+	    xhttp.open("GET", "/pokemon_search_autocomplete?query="+ input.value,true);
+ 		xhttp.send();
+	   }
+	
+
 </script>
 
 

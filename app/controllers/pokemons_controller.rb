@@ -49,6 +49,19 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 
 	end
 
+	def find_pokemon
+	end
+
+	def pokemon_search_autocomplete
+		
+		@pokemon_suggest=[]
+    	Pokemon.where("species ILIKE :species", species: "%#{params[:query]}%").map do |record|
+		      @pokemon_suggest.push(record.species)
+		 end
+		 
+		render status: 200, json: @pokemon_suggest.to_json
+	end
+
 
 
 private
