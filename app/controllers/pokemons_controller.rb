@@ -1,5 +1,5 @@
 class PokemonsController < ApplicationController
-before_action :find_pokemon, only: [:show,:edit,:update]
+before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 
 	def index
 		# Only show current_users pokemon. This is the pokédex
@@ -12,7 +12,6 @@ before_action :find_pokemon, only: [:show,:edit,:update]
 		# Convert json object back into an array
 		pokemon_array = JSON.parse(params[:jsonData])
 		# create new pokemon for user
-		byebug
 		pokemon = current_user.pokemons.new(pokemon_array[0])
 
 		if pokemon.save
@@ -29,7 +28,6 @@ before_action :find_pokemon, only: [:show,:edit,:update]
 	end
 
 	def update
-		byebug
 		if @pokemon.update(get_params)
 			redirect_to pokemon_path(@pokemon)
 		else 
@@ -38,8 +36,17 @@ before_action :find_pokemon, only: [:show,:edit,:update]
 	end
 
 	def show
-		
-		@pokemon = Pokemon.find_by(id:params[:id])
+	end
+
+	def destroy
+		if @pokemon.destroy
+			redirect_to pokemons_path
+			flash[:success] = @pokemon.name.capitalize + " successfully deleted from your Pokédex!"
+		else
+			redirect_to pokemon_path(@pokemon)
+			flash[:info] = "Failed to destroy pokemon. Please try again"
+		end
+
 	end
 
 private

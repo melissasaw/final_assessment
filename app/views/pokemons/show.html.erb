@@ -21,6 +21,11 @@
 		<%=button_to "Groom"%>
 		<%=button_to "Mate"%>
 
+		<div>
+			<%=button_to "Delete",pokemon_path(@pokemon), method: :delete, data: {confirm: "Are you sure you want to delete pokemon?"} %>
+
+		</div>
+
 
 	</div>
 
