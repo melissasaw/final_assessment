@@ -19,7 +19,8 @@ before_action :find_user, only: [:show,:edit,:update,:destroy]
 			redirect_to root_path
 			flash[:success] = "Woohoo! User successfully created! Sign In below."
 		else
-			render 'new'
+			flash[:info] = "Whoopss, something went wrong. Please make sure first & last names are present and email is in the right format!."
+			render template: "/users/new"
 		end
 	end
 

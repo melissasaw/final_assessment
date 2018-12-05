@@ -4,7 +4,7 @@
 
 <div class= "container full-height">
 	
-    <%= form_for @user, html: {multiport:true} do |form| %>
+    <%= form_for User.new do |form| %>
       <%= render partial: '/users/form', object: form %>
 
       <div class="submit-field">
