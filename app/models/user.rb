@@ -7,7 +7,6 @@ class User < ApplicationRecord
 	validates :email, uniqueness: true
 	validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Invalid format.Please try again!" }
 	validates :password, presence: true, length: { in: 6..20 }
-	validates :password_confirmation, presence: true
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
 	   user = self.create!(
