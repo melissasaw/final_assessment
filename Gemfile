@@ -69,3 +69,10 @@ gem "poke-api"
 
 # jquery
 gem 'jquery-rails'
+
+# Google login OAuth gem
+gem 'omniauth-google-oauth2'
+
+# Figaro
+gem "figaro"
+
