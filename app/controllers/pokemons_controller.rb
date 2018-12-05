@@ -12,8 +12,10 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		pokemon_array = JSON.parse(params[:jsonData])
 		# create new pokemon for user
 		pokemon = current_user.pokemons.new(pokemon_array[0])
+		pokemon.happiness = 0 
 
 		if pokemon.save
+			byebug
 			redirect_to pokemon_path(pokemon)
 			current_user.coins = current_user.coins - 15
 			current_user.save

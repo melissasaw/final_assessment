@@ -1,3 +1,13 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+    color: orange;
+}
+</style>
+</head>
+
 <div class="container full-height">
  
 	<div class ="top-margin">
@@ -27,13 +37,43 @@
 		Since : <%=@pokemon.created_at%><br/>
 
 		<%=image_tag("#{@pokemon.image_url}", height: '150em')%>
-		<%=image_tag("#{@pokemon.image_url_1}", height: '150em')%>
+		<%=image_tag("#{@pokemon.image_url_1}", height: '150em')%><br/>
+
+		Happiness: 
+		<!-- If happiness is 2/5 then i = 2 and j= 5-2-->
+			<%i="#{@pokemon.happiness}".to_i%>
+			<!-- Capped stars at 5 -->
+			<%if i >=5 %>
+				<%i=5%>
+			<%end%>
+
+			<%j=5-i%>
+			<%while j<5 do%>
+				<span class="fa fa-star checked"></span>
+				<%j+=1%>
+			<%end%>
+			<%while i<5 do%>
+				<span class="fa fa-star"></span>
+				<%i+=1%>
+			<%end%>
 
 		<%if current_user == @pokemon.user%>
-			<%=button_to "Groom"%>
-			<%=button_to "Mate"%>
+
+			<!-- When you click on the groom button -->
+			<!-- Deducts coins from you -->
+			<!-- Happiness rating goes up -->
+			<!-- Once its at its happiest, you can keep grooming but it doesnt go up more -->
+			<br/>
+
+			<div class="top-margin">
+				<button type="button" onclick="addHappiness()" class="btn btn-orange">Groom <%=@pokemon.name.capitalize%></button><br/>
+				<p>Grooming your pokémon increases its happiness level. Your pokémon can only begin mating at maximum happiness level!</p>
+			</div>
+
+			<button type="button" onclick="addHappiness()" class="btn btn-orange disabled">Mate</button><br/>
+
 			<div>
-				<%=button_to "Delete",pokemon_path(@pokemon), method: :delete, data: {confirm: "Are you sure you want to delete pokemon?"} %>
+				<%=button_to "Delete",pokemon_path(@pokemon), method: :delete, data: {confirm: "Are you sure you want to delete pokemon?"}, class:"btn btn-primary top-margin" %>
 			</div>
 		<%end%>
 
@@ -66,6 +106,29 @@
 		result = "false";
 		}
 		});
-
 	}
+
+	// Happiness Rating
+	var $star_rating = $('.star-rating .fa');
+
+	var SetRatingStar = function() {
+	  return $star_rating.each(function() {
+	    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+	      return $(this).removeClass('fa-star-o').addClass('fa-star');
+	    } else {
+	      return $(this).removeClass('fa-star').addClass('fa-star-o');
+	    }
+	  });
+	};
+
+	$star_rating.on('click', function() {
+	  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+	  return SetRatingStar();
+	});
+
+	SetRatingStar();
+	$(document).ready(function() {
+
+});
+
 </script>
