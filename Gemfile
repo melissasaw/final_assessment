@@ -76,3 +76,8 @@ gem 'omniauth-google-oauth2'
 # Figaro
 gem "figaro"
 
+# RSpec
+gem 'rspec-rails'
+
+
+
