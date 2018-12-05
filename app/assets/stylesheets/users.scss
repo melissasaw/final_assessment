@@ -2,7 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body#LoginForm{ background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; }
+
+body#LoginForm{
+background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+background-repeat:no-repeat; 
+background-position:center;
+background-size:cover;
+}
 
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
@@ -16,10 +22,11 @@ body#LoginForm{ background-image:url("https://hdwallsource.com/img/2014/9/blur-2
   line-height: 50px;
 }
 .main-div {
-  background: #ffffff none repeat scroll 0 0;
+  background: rgba(0,0,0,0.15) none repeat scroll 0 0;
   border-radius: 2px;
   margin: 10px auto 30px;
-  max-width: 38%;
+  max-width: 400px;
+  width:100%;
   padding: 50px 70px 70px 71px;
 }
 
@@ -55,3 +62,29 @@ body#LoginForm{ background-image:url("https://hdwallsource.com/img/2014/9/blur-2
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+.margin-100{
+  margin-top:100px;
+}
+
+.margin-bottom-30{
+  margin-bottom: 30px;
+}
+
+.footer {
+   position: relative;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   max-height:200px;
+   height:100%;
+   background-color: #f0ad4e;
+   color: white;
+   text-align: center;
+   padding:10px;
+}
+
+.bg-yellow
+{
+  background: #ffc107b3;
+}

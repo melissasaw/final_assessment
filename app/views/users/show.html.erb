@@ -1,20 +1,19 @@
-<div class="container top-margin">
-	<div>
-		<h2>Your Profile</h2>
+<div class="container top-margin full-height">
+	<div class="circular">
 	</div>
 
-	<div class= "container thin-border-box top-margin">
+	<div class= "container thin-border-box top-margin div-width">
 		<table style= "width:100%">
 			<tr>
-				<td>Full Name:</td>
+				<td><strong>Full Name:</strong></td>
 				<td><%=@user.first_name%> <%=@user.last_name%></td>
 			</tr>
 			<tr>
-				<td>Email:</td>
+				<td><strong>Email:</td>
 				<td><%=@user.email%></td>
 			</tr>
 			<tr>
-				<td>Gender:</td>
+				<td><strong>Gender:</strong></td>
 				<%if @user.gender == "0"%>
 					<%gender = "Female"%>
 				<%elsif @user.gender == "1"%>
@@ -25,7 +24,7 @@
 				<td><%=gender%></td>
 			</tr>
 			<tr>
-				<td>Pokécoins:</td>
+				<td><strong>Pokécoins:</strong></td>
 				<td><%=image_tag("/pokecoin.png",height:"35em")%> <%=@user.coins%></td>
 			</tr>
 		</table>
