@@ -40,8 +40,13 @@ before_action :find_user, only: [:show,:edit,:update,:destroy]
 			redirect_to root_path
 			flash[:info] = "Invalid email/password"
 		end
-		
+	end
 
+	# For google auth session
+	def google_sign_in(user)
+		# Already created user from google acc
+		session[:user_id]=user.id
+		# directed back to session_controller.
 	end
 
 	def sign_out
