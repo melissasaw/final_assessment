@@ -72,8 +72,8 @@ before_action :find_user, only: [:show,:edit,:update,:destroy]
 		# Convert json object back into an array
 		coins = JSON.parse(params[:jsonData])[0]
 		current_user.coins = current_user.coins + coins
-		
-		if current_user.save
+
+		if current_user.save(validate: false)
 			redirect_to root_path
 			flash[:success] = "Hooray! " + coins.to_s + " pokécoins added to your wallet  >_< "
 		else

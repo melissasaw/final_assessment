@@ -17,7 +17,7 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		if pokemon.save
 			redirect_to pokemon_path(pokemon)
 			current_user.coins = current_user.coins - 15
-			current_user.save
+			current_user.save(validate: false)
 		else
 			redirect_to root_path
 			flash[:info] = "Generator Failed. Please try again"
