@@ -72,7 +72,10 @@
 				<p>Grooming your pokémon increases its happiness level. Your pokémon can only begin mating at maximum happiness level!</p>
 			</div>
 
-			<button type="button" onclick="addHappiness()" class="btn btn-orange disabled">Mate</button><br/>
+			<button type="button"class="btn btn-orange disabled">Mate</button>
+			    <small id="passwordHelpInline" class="text-muted">
+				   whooopsss..currently unavaible >__<
+				</small>
 
 			<div>
 				<%=button_to "Delete",pokemon_path(@pokemon), method: :delete, data: {confirm: "Are you sure you want to delete pokemon?"}, class:"btn btn-primary top-margin" %>
