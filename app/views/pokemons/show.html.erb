@@ -41,7 +41,8 @@
 
 		Happiness: 
 		<!-- If happiness is 2/5 then i = 2 and j= 5-2-->
-			<%i="#{@pokemon.happiness}".to_i%>
+			<%happiness="#{@pokemon.happiness}".to_i%>
+			<%i=happiness%>
 			<!-- Capped stars at 5 -->
 			<%if i >=5 %>
 				<%i=5%>
@@ -66,7 +67,8 @@
 			<br/>
 
 			<div class="top-margin">
-				<button type="button" onclick="addHappiness()" class="btn btn-orange">Groom <%=@pokemon.name.capitalize%></button><br/>
+				<%=button_to "Groom #{@pokemon.name.capitalize}",pokemon_happiness_path(@pokemon), class:"btn btn-orange top-margin"%>
+
 				<p>Grooming your pokémon increases its happiness level. Your pokémon can only begin mating at maximum happiness level!</p>
 			</div>
 
@@ -88,6 +90,8 @@
 
 </div>
 
+<p id="pokemon_id"><%=@pokemon.id%></p>
+
 <script type="text/javascript">
 	
 	function coinGenerator(){
@@ -107,28 +111,5 @@
 		}
 		});
 	}
-
-	// Happiness Rating
-	var $star_rating = $('.star-rating .fa');
-
-	var SetRatingStar = function() {
-	  return $star_rating.each(function() {
-	    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-	      return $(this).removeClass('fa-star-o').addClass('fa-star');
-	    } else {
-	      return $(this).removeClass('fa-star').addClass('fa-star-o');
-	    }
-	  });
-	};
-
-	$star_rating.on('click', function() {
-	  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
-	  return SetRatingStar();
-	});
-
-	SetRatingStar();
-	$(document).ready(function() {
-
-});
 
 </script>
