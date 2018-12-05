@@ -63,21 +63,21 @@ RSpec.describe User, type: :model do
 
     # Format of email and uniqueness
     describe "should permit valid email only" do
-      let(:valid_email) { User.create(first_name: "Stanley", last_name: "Haha",email: "stanley89@gmail.com", password: "123456", password_confirmation: "123456")}
-      let(:invalid_email) { User.create(first_name: "Lulu",last_name: "Haha",email: "lulu.com", password: "123456", password_confirmation: "123456") }
-      let(:repeated_email) { User.create(first_name: "Haha",last_name: "Hoho",email: "stanley89@gmail.com", password: "123456", password_confirmation: "123456") }
+      let(:user1) { User.create(first_name: "Stanley", last_name: "Haha",email: "stanley89@gmail.com", password: "123456", password_confirmation: "123456")}
+      let(:user2) { User.create(first_name: "Lulu",last_name: "Haha",email: "lulu.com", password: "123456", password_confirmation: "123456") }
+      let(:user3) { User.create(first_name: "Haha",last_name: "Hoho",email: "stanley89@gmail.com", password: "123456", password_confirmation: "123456") }
       
       it "sign up with valid email" do
-        expect(valid_email).to be_valid
+        expect(user1).to be_valid
       end
 
       it "sign up with invalid email" do
-        expect(invalid_email).to be_invalid
+        expect(user2).to be_invalid
       end 
 
       # uniqueness
       it "sign up with repeated email" do
-        expect(repeated_email).to be_invalid
+        expect(user3).to be_invalid
       end 
 
 

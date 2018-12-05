@@ -52,7 +52,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
@@ -76,14 +76,22 @@ gem 'omniauth-google-oauth2'
 # Figaro
 gem "figaro"
 
-# RSpec
-gem 'rspec-rails'
 
-# Rspec Given
- gem "rspec-given"
+group :development, :test do
+  gem 'byebug'
+  gem 'rspec-rails', '~> 3.4'
+  gem "rspec-given"
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
+end
+
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'database_cleaner', '~> 1.5'
+  gem 'faker', '~> 1.6.1'
 end
+
 
