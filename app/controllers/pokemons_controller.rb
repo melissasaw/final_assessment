@@ -12,8 +12,10 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		pokemon_array = JSON.parse(params[:jsonData])
 		# create new pokemon for user
 		pokemon = current_user.pokemons.new(pokemon_array[0])
+		pokemon.happiness = 0 
 
 		if pokemon.save
+			byebug
 			redirect_to pokemon_path(pokemon)
 			current_user.coins = current_user.coins - 15
 			current_user.save
@@ -46,7 +48,6 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 			redirect_to pokemon_path(@pokemon)
 			flash[:info] = "Failed to destroy pokemon. Please try again"
 		end
-
 	end
 
 	def search_pokemon
@@ -62,6 +63,25 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		 end
 		 
 		render status: 200, json: @pokemon_suggest.to_json
+	end
+
+	def pokemon_happiness
+		# pokemon id is params[:format]
+		pokemon = Pokemon.find_by(id:params[:format])
+		pokemon.happiness = pokemon.happiness + 1
+		
+
+		if pokemon.save
+			# deduct 50 coins from user
+			pokemon.user.coins = pokemon.user.coins - 50
+			pokemon.user.save
+			redirect_to pokemon_path(pokemon)
+			flash[:success] = "Hooray, #{pokemon.name} is alot happier now!"
+		else
+			redirect_to
+			flash[:info] = "Whoops, something went wrong. Please try again! :)"
+		end
+
 	end
 
 
