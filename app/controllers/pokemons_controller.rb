@@ -51,7 +51,6 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 
 	def search_pokemon
 		@pokemon = Pokemon.where(species:params[:query])
-		byebug
 	end
 
 	def pokemon_search_autocomplete
