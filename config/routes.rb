@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  	# OAuth
+ 	get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  	
 	post '/coins' => "users#coin_generator"
 	patch '/pokemon/:id' => "users#update"
 	resources :users
@@ -12,5 +15,7 @@ Rails.application.routes.draw do
 	post '/find_pokemon' => "pokemons#find_pokemon"
 	get '/pokemon_search_autocomplete' => "pokemons#pokemon_search_autocomplete"
 	get '/search_pokemon' => "pokemons#search_pokemon"
- 
+ 	
+
+
 end

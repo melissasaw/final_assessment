@@ -10,6 +10,7 @@
 				    	<div class="margin-bottom-30"><%=image_tag("/Pokaymoon_1.png", height:"100")%></div>
 					   <h2>Sign In</h2>
 						   </div>
+
 						    <form id="Login" action="/sign_in" method="post" >
 						        <div class="form-group">
 						            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" name="email">
@@ -21,6 +22,10 @@
 						        	<a href="reset.html">Forgot password?</a>
 								</div>
 				        		<button type="submit" class="btn btn-primary">Login</button>
+
+							   	<div>
+						  			<%= link_to "Sign in with Google", "/auth/google_oauth2", class:"btn btn-red top-margin" %>
+						   		</div>
 				   			</form>
 				    </div>
 				</div>
