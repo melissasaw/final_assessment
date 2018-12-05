@@ -13,7 +13,7 @@
   <div class="form-group">
     <label for="birthday">Dat of Birth</label>
     <%= form.text_field :birthday, class: 'form-control', placeholder: 'D.O.B' %>
-    <small id="passwordHelpInline" class="text-muted">
+    <small>
       Format: DD.MM.YYYY
     </small>
   </div>
@@ -26,8 +26,8 @@
   <div class="form-group">
     <label for="password">Password*</label>
     <%= form.password_field :password, class: 'form-control', placeholder: 'Enter Password' %>
-      <small id="passwordHelpInline" class="text-muted">
-      Must be 6-20 characters long.
+    <small>
+      Minimum 6 chars.
     </small>
   </div>
 
