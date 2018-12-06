@@ -72,7 +72,7 @@ before_action :find_pokemon, only: [:show,:edit,:update,:destroy]
 		if pokemon.save
 			# deduct 50 coins from user
 			pokemon.user.coins = pokemon.user.coins - 50
-			pokemon.user.save
+			pokemon.user.save(validate: false)
 			redirect_to pokemon_path(pokemon)
 			flash[:success] = "Hooray, #{pokemon.name} is alot happier now!"
 		else
